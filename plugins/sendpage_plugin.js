@@ -18,13 +18,13 @@ function getManifest() {
 
 function getHomeSections() {
     return JSON.stringify([
-        { slug: 'phim-bo', title: 'PHIM BỘ MỚI', type: 'Horizontal', path: 'danh-sach' },
-        { slug: 'phim-le', title: 'PHIM LẺ MỚI', type: 'Horizontal', path: 'danh-sach' },
-        { slug: 'phim-chieu-rap', title: 'PHIM CHIẾU RẠP', type: 'Horizontal', path: 'danh-sach' },
-        { slug: 'hoat-hinh', title: 'PHIM HOẠT HÌNH', type: 'Horizontal', path: 'the-loai' },
-        { slug: 'hanh-dong', title: 'Hành Động', type: 'Horizontal', path: 'the-loai' },
-        { slug: 'tinh-cam', title: 'Tình Cảm', type: 'Horizontal', path: 'the-loai' },
-        { slug: 'kinh-di', title: 'Kinh Dị', type: 'Grid', path: 'the-loai' }
+        { slug: 'danh-sach/phim-bo', title: 'PHIM BỘ MỚI', type: 'Horizontal' },
+        { slug: 'danh-sach/phim-le', title: 'PHIM LẺ MỚI', type: 'Horizontal' },
+        { slug: 'danh-sach/phim-chieu-rap', title: 'PHIM CHIẾU RẠP', type: 'Horizontal' },
+        { slug: 'the-loai/hoat-hinh', title: 'PHIM HOẠT HÌNH', type: 'Horizontal' },
+        { slug: 'the-loai/hanh-dong', title: 'Hành Động', type: 'Horizontal' },
+        { slug: 'the-loai/tinh-cam', title: 'Tình Cảm', type: 'Horizontal' },
+        { slug: 'the-loai/kinh-di', title: 'Kinh Dị', type: 'Grid' }
     ]);
 }
 
@@ -90,38 +90,25 @@ function getUrlList(slug, filtersJson) {
     try {
         var filters = JSON.parse(filtersJson || "{}");
         var page = filters.page || 1;
-        var path = filters.path || "";
-
         var baseUrl = "https://motchillz.cx";
 
-        // Ưu tiên filter
+        // Nếu filter có category/country/year thì ghi đè slug
+        if (filters.category) {
+            slug = "the-loai/" + filters.category;
+        }
         if (filters.country) {
-            var url = baseUrl + "/quoc-gia/" + filters.country;
-            if (page > 1) url += "/" + page;
-            return url;
+            slug = "quoc-gia/" + filters.country;
         }
         if (filters.year) {
-            var url = baseUrl + "/nam-phat-hanh/" + filters.year;
-            if (page > 1) url += "/" + page;
-            return url;
-        }
-        if (filters.category) {
-            var url = baseUrl + "/the-loai/" + filters.category;
-            if (page > 1) url += "/" + page;
-            return url;
+            slug = "nam-phat-hanh/" + filters.year;
         }
 
-        // Xử lý từ HomeSections (path + slug)
+        // Nếu slug đã chứa prefix path (vd: "danh-sach/phim-bo") thì dùng luôn
         var finalUrl = baseUrl;
-        if (path === "danh-sach") {
-            finalUrl += "/danh-sach/" + slug;
-        } else if (path === "the-loai") {
-            finalUrl += "/the-loai/" + slug;
-        } else if (slug.indexOf("/") > -1) {
-            // slug đã chứa full path, vd: "danh-sach/phim-bo"
+        if (slug.indexOf("/") > -1) {
             finalUrl += "/" + slug;
         } else {
-            // Mặc định thử danh-sach
+            // Mặc định: danh-sach
             finalUrl += "/danh-sach/" + slug;
         }
 

@@ -7,8 +7,8 @@ function getManifest() {
         "id": "sendpage",
         "name": "Motchill (Sendpage)",
         "version": "1.0.0",
-        "baseUrl": "https://sendpage.org",
-        "iconUrl": "https://sendpage.org/favicon.ico",
+        "baseUrl": "https://motchillz.cx",
+        "iconUrl": "https://motchillz.cx/favicon.ico",
         "isEnabled": true,
         "isAdult": false,
         "type": "MOVIE"
@@ -49,7 +49,7 @@ function getUrlList(slug, filtersJson) {
         var page = filters.page || 1;
         var path = filters.path || "";
 
-        var baseUrl = "https://sendpage.org/";
+        var baseUrl = "https://motchillz.cx/";
         var finalUrl = baseUrl;
 
         // Xử lý các dạng path từ HomeSections
@@ -73,7 +73,7 @@ function getUrlList(slug, filtersJson) {
 
         return finalUrl;
     } catch (e) {
-        return "https://sendpage.org";
+        return "https://motchillz.cx";
     }
 }
 
@@ -81,16 +81,16 @@ function getUrlSearch(keyword, filtersJson) {
     var filters = JSON.parse(filtersJson || "{}");
     var page = filters.page || 1;
     // Tạm cấu hình trang search
-    return "https://sendpage.org/tim-kiem/" + encodeURIComponent(keyword) + "?page=" + page;
+    return "https://motchillz.cx/tim-kiem/" + encodeURIComponent(keyword) + "?page=" + page;
 }
 
 function getUrlDetail(slug) {
-    return "https://sendpage.org/phim/" + slug;
+    return "https://motchillz.cx/phim/" + slug;
 }
 
-function getUrlCategories() { return "https://sendpage.org/"; }
-function getUrlCountries() { return "https://sendpage.org/"; }
-function getUrlYears() { return "https://sendpage.org/"; }
+function getUrlCategories() { return "https://motchillz.cx/"; }
+function getUrlCountries() { return "https://motchillz.cx/"; }
+function getUrlYears() { return "https://motchillz.cx/"; }
 
 // =============================================================================
 // PARSERS
@@ -117,7 +117,7 @@ function parseListResponse(html) {
         var thumbMatch = itemHtml.match(/src=["']([^"']+)["']/);
         var thumb = thumbMatch ? thumbMatch[1] : "";
         if (thumb.indexOf("http") !== 0 && thumb.length > 0) {
-            thumb = "https://sendpage.org" + (thumb.startsWith("/") ? "" : "/") + thumb;
+            thumb = "https://motchillz.cx" + (thumb.startsWith("/") ? "" : "/") + thumb;
         }
 
         // Rút trích episode current (Tập 1, Tập 2...) nằm trong div/span
@@ -185,7 +185,7 @@ function parseMovieDetail(html) {
         var thumbMatch = html.match(/<img[^>]*src=["']([^"']+)["'][^>]*alt=["']([^"']*)["'][^>]*>/i);
         var thumb = thumbMatch ? thumbMatch[1] : "";
         if (thumb && thumb.indexOf("http") !== 0) {
-            thumb = "https://sendpage.org" + (thumb.startsWith("/") ? "" : "/") + thumb;
+            thumb = "https://motchillz.cx" + (thumb.startsWith("/") ? "" : "/") + thumb;
         }
 
         var epsArr = [];
@@ -275,8 +275,8 @@ function parseDetailResponse(html, fallbackUrl) {
                 url: opstreamLink,
                 headers: {
                     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-                    "Origin": "https://sendpage.org",
-                    "Referer": "https://sendpage.org"
+                    "Origin": "https://motchillz.cx",
+                    "Referer": "https://motchillz.cx"
                 },
                 subtitles: []
             });

@@ -79,11 +79,11 @@
             "iconUrl": "https://misskon.com/favicon.ico"
         },
         {
-            "id": "sendpage",
-            "name": "Motchill (Sendpage)",
-            "version": "1.0.0",
+            "id": "motchill",
+            "name": "MotChill",
+            "version": "2.0.0",
             "scriptUrl": "https://raw.githubusercontent.com/trieu1910/repo/main/plugins/sendpage_plugin.js",
-            "iconUrl": "https://sendpage.org/favicon.ico"
+            "iconUrl": "https://motchillz.cx/motchill.png"
         }
     ]
 }

